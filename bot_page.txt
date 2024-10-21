@@ -1,0 +1,1090 @@
+#servlet page lgin page usename and password 
+loginservlet.page
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class LoginServlet extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        {
+        out.println("<html><head><title>Servlet LoginServlet</title></head>");  
+        String uname = request.getParameter("txtId"); 
+        String upass = request.getParameter("txtPass"); 
+        if(uname.equals("Prathamesh") && upass.equals("Bhosle")) 
+        {
+            out.println("<body bgcolor=cyan >");  
+            out.println("<h1><center> Welcome !!! "+uname+"</center></h1>");  
+        }
+        else 
+        { 
+        out.println("<body bgcolor=red >"); 
+        out.println("<h1><center> Login Fail !!! </center></h1>"); 
+        } 
+       out.println("</body></html>");
+        }
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response); 
+    } 
+    }
+index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <form  action="LoginServlet" > 
+            <center> Enter User ID <input type="text" name="txtId"></center><br> 
+            <center> Enter Password <input type="password" name="txtPass"></center><br> 
+            <center><input type="reset"> </center>
+            <center><input type="submit" value=" Click to Login "></center>
+        </form>
+    </body>
+</html>
+#servlet demo basic calculator
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <form  method ="get" action="Cal" >
+            <h1> <center>Calculator</center></h1>
+               Enter First Number <input type="text" name="txtN1"><br>
+               Enter Second Number <input type="text" name="txtN2" ><br>
+              Select an Operation<br>
+              <input type="radio" name="opr" value="+">Addition<br>
+               <input type="radio" name="opr" value="-">Subtraction<br>
+               <input type="radio" name="opr" value="*">Multiplication<br>
+               <input type="radio" name="opr" value="/">Division<br>
+                <br>
+                <input type="reset">
+                  <input type="submit" value="Calculate" >
+        </form>        
+    </body>
+</html>
+cal.java
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+/**
+ *
+ * @author Ramakant Bhosle
+ */
+public class Cal extends HttpServlet {
+    /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet Cal</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet Cal at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+       // processRequest(request, response);
+        PrintWriter out = response.getWriter();
+        int x,y;
+        String str = " ";
+        x = Integer.parseInt(request.getParameter("txtN1"));
+        y = Integer.parseInt(request.getParameter("txtN2"));
+        str = request.getParameter("opr");
+        if(str.equals("+"))
+            out.println("<h1>Result of Add: "+(x+y)+"</h1>");
+        else if(str.equals("-"))
+            out.println("<h1>Result of Sub: "+(x-y)+"</h1>");
+        else if(str.equals("/"))
+            out.println("<h1>Result of Div: "+(x/y)+"</h1>");
+        else if(str.equals("*"))
+            out.println("<h1>Result of Mul: "+(x*y)+"</h1>");
+    }
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
+#request dispatcher interface password entered	
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Login Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>   
+        <form action="Validate" method="post">
+            <center>Name : <input type="text" name="user" ></center><br>
+            <center>Password : <input type="text" name="pass" ></center><br>
+            <center><input type="submit" value="submit" ></center>
+        </form>
+    </body>
+</html>
+Validate.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class Validate extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            String name = request.getParameter("user");
+            String  passwd = request.getParameter("pass");
+            if (passwd.equals("servlet"))
+            {
+                RequestDispatcher rd = request.getRequestDispatcher("Welcome");
+                rd.forward(request,response);
+            }
+            else
+            {
+                out.println("<body bgcolor=red>"); 
+                out.println("<font color = 'black'><center><b>!!!Wrong Password!!!</b></center></font>");
+                RequestDispatcher rd = request.getRequestDispatcher("index.html");
+                rd.include (request,response);
+            }
+        }
+    }
+Welcome.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class Welcome extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter())
+        {    
+            out.println("<h1> ***Welcome Prathamesh to the World of Servlets***</h1>");
+            out.println("<body bgcolor=cyan>"); 
+        }
+    }
+#html page fields eno,ename,age
+Index.html
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+       <form action="ManageEmployee.jsp" method="post">
+            <center>
+            Enter Employee number<input type="text" name="e_no"><br><br>
+             Enter Employee name <input type="text" name="emp_name"><br><br>
+              Enter Employee age<input type="text" name="emp_age"><br><br>
+               Enter Employee designation<input type="text" name="designation"><br><br>
+                Enter Employee salary<input type="text" name="salary"><br><br>
+                <input type="reset">  <input type="submit"><br><br>
+                 </center>
+        </form>
+    </body>
+</html>
+ManageEmployee.jsp
+<%@page import="java.sql.ResultSet"%>
+<%@page import="java.sql.PreparedStatement"%>
+<%@page import="java.sql.DriverManager"%>
+<%@page import="java.sql.Connection"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import = "java.sql.*" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%
+            try{
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prac5a","pdlc","pdlc");
+                Connection con1 = DriverManager.getConnection("jdbc:mysql://localhost:3306/prac5a","pdlc","pdlc");
+                PreparedStatement ps = con.prepareStatement("select * from employee where e_no=?");
+                ps.setString(1, request.getParameter("e_no"));
+                ResultSet rs = ps.executeQuery();
+                if(rs.next())
+                {
+                    //modify the record
+                    PreparedStatement ps1 = con1.prepareStatement("Update employee set emp_name=?,emp_age=?,designation=?,salary=? where e_no=?");
+                    ps1.setString(1, request.getParameter("emp_name"));
+                     ps1.setString(2, request.getParameter("emp_age"));
+                      ps1.setString(3, request.getParameter("designation"));
+                       ps1.setString(4, request.getParameter("salary"));
+                        ps1.setString(5, request.getParameter("e_no"));
+                        ps1.executeUpdate();
+                        con1.close();
+                        out.println("<h1>Record is updated successfully</h1>");
+                }
+                else
+                {
+                     PreparedStatement ps1 = con1.prepareStatement("insert into employee values(?,?,?,?,?)");
+                   ps1.setString(1, request.getParameter("emp_name"));
+                     ps1.setString(2, request.getParameter("emp_age"));
+                      ps1.setString(3, request.getParameter("designation"));
+                       ps1.setString(4, request.getParameter("salary"));
+                        ps1.setString(5, request.getParameter("e_no"));
+                        ps1.executeUpdate()
+                        con1.close();
+                        out.println("<h1>Record is added successfully</h1>");
+                }
+            }catch(Exception ex)
+            {
+                out.println(ex.getMessage());
+            }
+            %>
+    </body>
+</html>
+#jsp demo express language
+html 1.
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <form action="maths1.jsp" method="post">
+            Enter the number : <input type="number" name="no"><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>
+index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <form method="post" action="test.jsp">
+            Name <input type="text" name="t1"><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>
+maths.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Addition ${param.t1+param.t2}</h1>
+    </body>
+</html>
+Math1.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%! int num=100; %> 
+       <% 
+           out.println(" The Numbers are:");  
+           for(int i=0; i<=num; i++)
+           { 
+           out.println(i);
+           }
+        %>
+    </body>
+</html>
+newhtml.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <form method="post" action="maths.jsp">
+            First Number <input type="number" name="t1"><br>
+            Second Number <input type="number" name="t2"><br>
+            <input type="submit">
+        </form>
+    </body>
+</html>
+test.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>Welcome ${param.t1}</h1>
+    </body>
+</html>
+# jsp registration vaild authentication
+index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>New User Registration Page</title>
+    </head> 
+    <body> 
+        <form action="CheckLogin.jsp" method="post"> 
+<h1> New User Registration Page</h1> 
+<table>
+    <tr><td>User Name </td>
+        <td> <input type="text" name=t1></td>
+    </tr>
+    <tr>
+        <td> Password </td>
+        <td><input type="password" name=p1></td>
+    </tr>
+    <tr>
+        <td colspan = 2 align=center><input type ="submit" value="Sign In"></td>
+    </tr>
+    <tr>
+        <td colspan = 2 align=center><a href="register.html">New User</a></td>
+    </tr>
+</table>
+</form> 
+    </body>
+</html> 
+NEWUSER.JSP
+<%-- 
+    Document   : NewUser
+    Created on : 26 Sep, 2024, 9:28:40 PM
+    Author     : Ramakant Bhosle
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%
+            try{
+                Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prac4c","pdlc","pdlc");
+                PreparedStatement ps = con.prepareStatement("Insert into registor values(?,?,?,?)");
+                ps.setString(1,request.getParameter("t1"));
+                ps.setString(2,request.getParameter("t2"));
+                ps.setString(3,request.getParameter("t3"));
+                ps.setString(4,request.getParameter("t4"));
+                ps.executeUpdate();
+                con.close();
+                response.sendRedirect("index.html");
+            }catch(Exception ex){
+                out.println(ex.getMessage());
+            }
+            %>
+    </body>
+</html>
+CheckLogin.jsp
+<%-- 
+    Document   : CheckLogin
+    Created on : 26 Sep, 2024, 10:13:50 PM
+    Author     : Ramakant Bhosle
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%
+            try{
+                 Class.forName("com.mysql.jdbc.Driver");
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/prac4c","pdlc","pdlc");
+                PreparedStatement ps = con.prepareStatement("select * from registor where username=? and password=?");
+                ps.setString(1,request.getParameter("t1"));
+                ps.setString(2,request.getParameter("p1"));
+                ResultSet rs = ps.executeQuery();
+                if(rs.next())
+                    out.println("<h1> The User Login Successfully</h1>");
+                             else
+                    out.println("<h1>The User Login is Invalid</h1>");
+            }catch(Exception ex){
+                out.println(ex.getMessage());
+            }
+            %>
+    </body>
+</html>
+Register.html
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+         <center>
+        <form  action="NewUser.jsp" >   
+        <H1>Welcome to Registration page</H1>   
+        Enter User Name<input type="text" name="t1"><br>  
+        Enter Password<input type="password" name="t2"><br>  
+        Enter Email <input type="text" name="t3" ><br>  
+        Enter Country<input type="text" name="t4" ><br>  
+        <input type="reset">
+        <input type="submit" value="Sign Up" >  
+        </form>
+    </center>
+    </body>
+</html>
+# shopping cart ejb
+Index.html
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+    <center>
+        <table border="2">
+            <tr>
+                <th> Book Name</th>
+                <th>Add Book</th>
+                <th>Remove Book</th>
+            </tr>
+            <tr>
+                <td> Core Java </td>
+                <td> <a href="MyItem?x=1&ti=Core Java">Add Book</a></td>
+                <td> <a href="MyItem?x=2&ti=Core Java">Remove Book</a></td>
+            </tr>
+            <tr>
+                <td> Head First Java </td>
+                <td> <a href="MyItem?x=1&ti=Head First Java">Add Book</a></td>
+                <td> <a href="MyItem?x=2&ti=Head First Java">Remove Book</a></td>
+            </tr>
+            <tr>
+                <td> Java 8 CookBook</td>
+                <td> <a href="MyItem?x=1&ti=Java 8 CookBook">Add Book</a></td>
+                <td> <a href="MyItem?x=2&ti=Java 8 cookBook">Remove Book</a></td>
+            </tr>
+             <tr>
+                <td> Java EE For Beginners</td>
+                <td> <a href="MyItem?x=1&ti=Java EE For Beginners">Add Book</a></td>
+                <td> <a href="MyItem?x=2&ti=Java EE For Beginners">Remove Book</a></td>
+            </tr>
+             <tr>
+                <td> Java For Dummies</td>
+                <td> <a href="MyItem?x=1&ti=Java  For Dummies">Add Book</a></td>
+                <td> <a href="MyItem?x=2&ti=Java For Dummies">Remove Book</a></td>
+            </tr>  
+            <tr>
+                <td> Enterprise Java EE 7</td>
+                <td> <a href="MyItem?x=1&ti=Enterprise Java EE 7">Add Book</a></td>
+                <td> <a href="MyItem?x=2&ti=Enterprise Java EE 7">Remove Book</a></td>
+            </tr>
+            <td colspan="3" style="text-align: center;">
+                <a href="MyItem?x=3" target="_blank">Display Book Cart</a>
+            </td>
+        </table>
+    </body>
+</html>
+MyItem.java
+package mypack;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class MyItem extends HttpServlet {
+@EJB
+private ShoppingCartLocal shoppingCart;
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet MyItem</title>");            
+            out.println("</head>");
+            out.println("<body>");
+             int x=Integer.parseInt(request.getParameter("x"));
+             String title = request.getParameter("ti");
+             if(x==1)
+             {
+                 shoppingCart.AddBook(title);
+                 response.sendRedirect("index.html");
+             }
+             else if(x==2)
+             {
+                 shoppingCart.RemoveBook(title);
+                 response.sendRedirect("index.html");
+             }
+             else
+             {
+                 ArrayList<String> allitems=shoppingCart.ListCartItems();
+                 for(int i=0; i<allitems.size();i++)
+                 {
+                     out.println(allitems.get(i) +"<br>");
+                 }
+             }
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
+ShoppingCart.java
+package mypack;
+import java.util.ArrayList;
+import javax.ejb.Stateful;
+@Stateful
+public class ShoppingCart implements ShoppingCartLocal {
+    private ArrayList<String>cart;
+    public ShoppingCart()
+    {
+        cart = new ArrayList();
+    }
+    @Override
+    public void AddBook(String Title) {
+        cart.add(Title);
+    }
+    // Add business logic below. (Right-click in editor and choose
+    // "Insert Code > Add Business Method")
+    @Override
+    public void RemoveBook(String Title) {
+        try{
+      cart.remove(Title);
+        }catch(Exception ex)
+        {
+            System.out.println(ex.getMessage());
+            throw ex;
+        }
+    }
+    @Override
+    public ArrayList ListCartItems() {
+        return cart;
+    }
+}
+ShoppingCartLocal.java
+package mypack;
+import java.util.ArrayList;
+import javax.ejb.Local;
+@Local
+public interface ShoppingCartLocal {
+    void AddBook(String Title);
+    void RemoveBook(String Title);
+    ArrayList ListCartItems();
+}
+# marks entry 
+idex.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Marks Entry System</title>
+</head>
+<body>
+    <h2>Enter Marks</h2>
+    <form action="MarksEntry" method="POST">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="studentName"><br><br>
+        <label for="marks">Marks:</label>
+        <input type="text" id="marks" name="marks"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+    <h2>Get Marks</h2>
+    <form action="MarksEntry" method="GET">
+        <label for="studentName">Student Name:</label>
+        <input type="text" id="studentName" name="studentName"><br><br>
+        <input type="submit" value="Get Marks">
+    </form>
+</body>
+</html>
+xml
+<web-app>
+    <servlet>
+        <servlet-name>MarksEntryServlet</servlet-name>
+        <servlet-class>com.example.marks.MarksEntryServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MarksEntryServlet</servlet-name>
+        <url-pattern>/MarksEntry</url-pattern>
+    </servlet-mapping>
+</web-app>
+marks.java
+package com.example.marks;
+import javax.ejb.Stateless;
+import java.util.HashMap;
+import java.util.Map;
+@Stateless
+public class MarksEntryBean {
+    // A map to simulate a database for storing marks
+    private Map<String, Integer> studentMarks = new HashMap<>();
+    public void addMarks(String studentName, int marks) {
+        studentMarks.put(studentName, marks);
+    }
+    public int getMarks(String studentName) {
+        return studentMarks.getOrDefault(studentName, -1); // Returns -1 if student not found
+    }
+}
+marks1.java
+package com.example.marks;
+import javax.ejb.EJB;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+@WebServlet("/MarksEntry")
+public class MarksEntryServlet extends HttpServlet {
+    @EJB
+    private MarksEntryBean marksEntryBean;
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String studentName = request.getParameter("studentName");
+        int marks = Integer.parseInt(request.getParameter("marks"));
+        marksEntryBean.addMarks(studentName, marks);
+        response.getWriter().println("Marks added successfully for " + studentName);
+    }
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String studentName = request.getParameter("studentName");
+        int marks = marksEntryBean.getMarks(studentName);
+        if (marks == -1) {
+            response.getWriter().println("No marks found for " + studentName);
+        } else {
+            response.getWriter().println("Marks for " + studentName + ": " + marks);
+        }
+    }
+}
+#servlet students name,age add, sess bean
+Index
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>User Information Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <h1>Registration Details</h1>
+        <form action="Validate.jsp">
+            Enter Your Name<br><input type="text" name="name"><br><br>
+            Enter Your Age<br><input type="text" name="age"><br><br>
+            Select Hobbies<br><input type="checkbox" name="hob" value="singing">Singing<br>
+            <input type="checkbox" name="hob" value="reading">Reading Books<br>
+            <input type="checkbox" name="hob" value="football">Playing Football<br>
+            Enter Your E-mail<input type="text" name="mail"><br><br
+            Select Gender<br><input type="radio" name="gender" value="mail">Male<br>
+            <input type="radio" name="gender" value="female">Female<br>
+            <input type="radio" name="gender" value="other">Other<br>
+            <input type="hidden" name="error" value=""><br>
+            <input type="submit" value="Submit Form"><br>
+        </form>
+    </body>
+</html>
+Validate.jsp
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <h1>The Register Details are:</h1>
+        <%
+            String name=request.getParameter("name");
+            String agestr=request.getParameter("age");
+            String errmsg="";
+            if(name.trim().equals(""))
+                errmsg="Plz Provide the name<br>";
+            if(agestr.trim().equals(""))
+            {
+                errmsg+="Plz Provide the Age<br>";
+            }
+            else
+            {
+                try
+                {
+                    int age = Integer.parseInt(agestr);
+                }catch(Exception ex){
+                    errmsg+="Invalid age<br>";
+                }
+            }
+            if(errmsg.trim().equals("")==false)
+            {
+                %>
+                <jsp:include page="index.html"></jsp:include>
+                <%
+                    out.println(errmsg)   
+            }
+            else{
+                out.println("<br><br>My Name is : "+request.getParameter("name"));
+                out.println("<br><br>My Age is : "+request.getParameter("age"));
+                out.println("<br><br>My Hobby is : "+request.getParameter("hob"));
+                out.println("<br><br>My Email is : "+request.getParameter("mail"));
+                out.println("<br><br>My Gender is : "+request.getParameter("gender"));
+            }
+           %>
+    </body>
+</html>
+#session creation destructuion
+index.html
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+    </body>
+</html>
+logput.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+public class logout1 extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet logout1</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            HttpSession mysession=request.getSession();
+            mysession.invalidate();
+            response.sendRedirect("TestSession");
+            out.println("<h1>Servlet logout1 at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+        }
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
+newservlet.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+public class NewServlet extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+         PrintWriter out = response.getWriter(); 
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet NewServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet NewServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
+testsession.java
+import java.io.IOException;
+import java.io.PrintWriter;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+public class TestSession extends HttpServlet {
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter(); 
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet TestSession</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            HttpSession mysession = request.getSession(true);
+            if(mysession.isNew()==true)
+            {
+                out.println("<h1> Welcome</h1>");
+            }
+            else 
+            {
+                out.println("<h1>Welcome back</h1>");
+                out.println("<a href=logout1>Logout</a>");
+       
+            }
+            out.println("<h1>Session Id -"+ mysession.getId());
+            out.println("<h1>Session Creation Time -"+ new java.util.Date(mysession.getCreationTime()));
+            out.println("<h1>Session Last Access Time -" +new java.util.Date(mysession.getLastAccessedTime()));
+            out.println("</body>");
+            out.println("</html>");
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    /**
+     * Handles the HTTP
+     * <code>GET</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Handles the HTTP
+     * <code>POST</code> method.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
+}
+
+
+
+
